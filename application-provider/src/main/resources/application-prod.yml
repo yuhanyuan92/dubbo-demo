@@ -1,0 +1,53 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos.zb.qianlima.com:8848
+        register-enabled: true
+  datasource:
+    qianlima:
+      username: mycat
+      password: 6UcqwFVeFAo2
+      jdbc-url: jdbc:mysql://prod-db-mycat.qianlimafile.com:8066/qianlima?useUnicode=true&characterEncoding=utf8
+    qlmservice:
+      username: mycat
+      password: 6UcqwFVeFAo2
+      jdbc-url: jdbc:mysql://prod-db-mycat.qianlimafile.com:8066/qlmservice?useUnicode=true&characterEncoding=utf8
+    qlmlog:
+      username: mycat
+      password: 6UcqwFVeFAo2
+      driverClassName: com.mysql.jdbc.Driver
+      jdbcUrl: jdbc:mysql://prod-db-mycat.qianlimafile.com:8066/qlmlog201?useUnicode=true&characterEncoding=GBK
+    institution:
+      username: mycat
+      password: 6UcqwFVeFAo2
+      driverClassName: com.mysql.jdbc.Driver
+      jdbcUrl: jdbc:mysql://prod-db-mycat.qianlimafile.com:8066/institution?useUnicode=true&characterEncoding=GBK
+    publish:
+      username: mycat
+      password: 6UcqwFVeFAo2
+      driverClassName: com.mysql.jdbc.Driver
+      jdbcUrl: jdbc:mysql://prod-db-mycat.qianlimafile.com:8066/publish?useUnicode=true&characterEncoding=GBK
+
+dubbo:
+  protocol:
+    threads: 50
+
+# 找人脉接口
+findConnections:
+  url: http://reward.qianlima.com/qianlima-reward/gwApi/getContractTicketInfo?orgId=%s
+findCrmMemberInfo:
+  url: http://1.202.93.38:28080/crmService/www/queryOpenAndCloseTime.do?userid=%s
+
+data:
+  sjsolr:
+    host1: http://10.30.111.215/sjsolr/query
+    host2: http://10.66.158.98/sjsolr/query
+  qysolr:
+    host1: http://10.30.111.215/qysolr/query
+    host2: http://10.66.158.98/qysolr/query
+
+
+
+
+

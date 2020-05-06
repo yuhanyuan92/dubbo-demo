@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 117.79.92.66:8848
+        namespace: f7ce4f95-4047-4c75-a5c0-e2182f771347
+
+  devtools:
+    restart:
+      enabled: true
+  http:
+    encoding:
+      force: true
+
+dubbo:
+  application:
+    qos-enable: false
+  consumer:
+    check: false

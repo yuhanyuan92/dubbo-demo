@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    qianlima:
+      username: mycat
+      password: mycat
+      jdbc-url: jdbc:mysql://192.168.1.119:7066/qianlima?useUnicode=true&characterEncoding=utf8
+#    cusdata:
+#      username: cusdataWriter
+#      password: DnpDqHHS
+#      jdbc-url: jdbc:mysql://192.168.1.116:3309/cusdata?useUnicode=true&characterEncoding=utf8
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 117.79.92.66:8848
+        namespace: f7ce4f95-4047-4c75-a5c0-e2182f771347
+
+  devtools:
+    restart:
+      enabled: true
+  http:
+    encoding:
+      force: true
+
+
+# 找人脉接口
+findConnections:
+  url: http://reward.qianlima.com/qianlima-reward/gwApi/getContractTicketInfo?orgId=%s
+
+
+
+
+
+
+

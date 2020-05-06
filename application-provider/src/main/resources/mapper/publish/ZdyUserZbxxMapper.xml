@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianlima.application.mapper.publish.ZdyUserZbxxMapper">
+
+  <insert id="insertZdyUserZbxx" useGeneratedKeys="true" keyProperty="id">
+    insert into zdy_user_zbxx(uid,dwmc,lxr,tle,email,title,m_text,zb_type,addtime)
+    value(#{userid},#{company},#{people},#{phone},#{email},#{title},#{content},#{xmtype},#{addtime})
+  </insert>
+
+  <update id="updateZdyUserZbxx">
+    update zdy_user_zbxx
+    set dwmc=#{company},lxr=#{people},tle=#{phone},email=#{email},title=#{title},
+        m_text=#{content},zb_type=#{xmtype},addtime=#{addtime}
+    where uid=#{userid} and id=#{id}
+  </update>
+
+  <delete id="deleteZdyUserZbxx">
+    delete from zdy_user_zbxx where id=#{id}
+  </delete>
+
+</mapper>

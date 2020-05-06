@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianlima.application.mapper.qlmservice.ZdyVipMatchMapper">
+    <resultMap id="BaseResultMap" type="com.qianlima.application.domain.qlmservice.ZdyVipMatch">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="userId" jdbcType="INTEGER" property="userid"/>
+        <result column="dwmc" jdbcType="VARCHAR" property="dwmc"/>
+        <result column="areas" jdbcType="VARCHAR" property="areas"/>
+        <result column="kfId" jdbcType="INTEGER" property="kfid"/>
+        <result column="kfName" jdbcType="VARCHAR" property="kfname"/>
+        <result column="keLevel" jdbcType="INTEGER" property="kelevel"/>
+        <result column="isOrNot" jdbcType="INTEGER" property="isornot"/>
+        <result column="industryType" jdbcType="INTEGER" property="industrytype"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="notice" jdbcType="VARCHAR" property="notice"/>
+        <result column="intime" jdbcType="INTEGER" property="intime"/>
+        <result column="updatetime" jdbcType="INTEGER" property="updatetime"/>
+        <result column="startTime" jdbcType="INTEGER" property="starttime"/>
+        <result column="endTime" jdbcType="INTEGER" property="endtime"/>
+        <result column="isMatch" jdbcType="INTEGER" property="ismatch"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+               type="com.qianlima.application.domain.qlmservice.ZdyVipMatchWithBLOBs">
+        <result column="areaNames" jdbcType="LONGVARCHAR" property="areanames"/>
+        <result column="yewu" jdbcType="LONGVARCHAR" property="yewu"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, userId, dwmc, areas, kfId, kfName, keLevel, isOrNot, industryType, status, notice, 
+    intime, updatetime, startTime, endTime, isMatch
+  </sql>
+    <sql id="Blob_Column_List">
+    areaNames, yewu
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from zdy_vip_match
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectByUserId" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from zdy_vip_match
+        where userId = #{userId}
+        order by id desc limit 1
+    </select>
+    <select id="countByUserId" parameterType="java.lang.Integer" resultType="java.lang.Long">
+    select count(1) from zdy_vip_match
+    where userId = #{userId,jdbcType=INTEGER}
+  </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zdy_vip_match
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.qianlima.application.domain.qlmservice.ZdyVipMatchWithBLOBs">
+    insert into zdy_vip_match (id, userId, dwmc, 
+      areas, kfId, kfName, 
+      keLevel, isOrNot, industryType, 
+      status, notice, intime, 
+      updatetime, startTime, endTime, 
+      isMatch, areaNames, yewu
+      )
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{dwmc,jdbcType=VARCHAR}, 
+      #{areas,jdbcType=VARCHAR}, #{kfid,jdbcType=INTEGER}, #{kfname,jdbcType=VARCHAR}, 
+      #{kelevel,jdbcType=INTEGER}, #{isornot,jdbcType=INTEGER}, #{industrytype,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{notice,jdbcType=VARCHAR}, #{intime,jdbcType=INTEGER}, 
+      #{updatetime,jdbcType=INTEGER}, #{starttime,jdbcType=INTEGER}, #{endtime,jdbcType=INTEGER}, 
+      #{ismatch,jdbcType=INTEGER}, #{areanames,jdbcType=LONGVARCHAR}, #{yewu,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.qianlima.application.domain.qlmservice.ZdyVipMatchWithBLOBs">
+        insert into zdy_vip_match
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userid != null">
+                userId,
+            </if>
+            <if test="dwmc != null">
+                dwmc,
+            </if>
+            <if test="areas != null">
+                areas,
+            </if>
+            <if test="kfid != null">
+                kfId,
+            </if>
+            <if test="kfname != null">
+                kfName,
+            </if>
+            <if test="kelevel != null">
+                keLevel,
+            </if>
+            <if test="isornot != null">
+                isOrNot,
+            </if>
+            <if test="industrytype != null">
+                industryType,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="notice != null">
+                notice,
+            </if>
+            <if test="intime != null">
+                intime,
+            </if>
+            <if test="updatetime != null">
+                updatetime,
+            </if>
+            <if test="starttime != null">
+                startTime,
+            </if>
+            <if test="endtime != null">
+                endTime,
+            </if>
+            <if test="ismatch != null">
+                isMatch,
+            </if>
+            <if test="areanames != null">
+                areaNames,
+            </if>
+            <if test="yewu != null">
+                yewu,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="dwmc != null">
+                #{dwmc,jdbcType=VARCHAR},
+            </if>
+            <if test="areas != null">
+                #{areas,jdbcType=VARCHAR},
+            </if>
+            <if test="kfid != null">
+                #{kfid,jdbcType=INTEGER},
+            </if>
+            <if test="kfname != null">
+                #{kfname,jdbcType=VARCHAR},
+            </if>
+            <if test="kelevel != null">
+                #{kelevel,jdbcType=INTEGER},
+            </if>
+            <if test="isornot != null">
+                #{isornot,jdbcType=INTEGER},
+            </if>
+            <if test="industrytype != null">
+                #{industrytype,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="notice != null">
+                #{notice,jdbcType=VARCHAR},
+            </if>
+            <if test="intime != null">
+                #{intime,jdbcType=INTEGER},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=INTEGER},
+            </if>
+            <if test="starttime != null">
+                #{starttime,jdbcType=INTEGER},
+            </if>
+            <if test="endtime != null">
+                #{endtime,jdbcType=INTEGER},
+            </if>
+            <if test="ismatch != null">
+                #{ismatch,jdbcType=INTEGER},
+            </if>
+            <if test="areanames != null">
+                #{areanames,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="yewu != null">
+                #{yewu,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.qianlima.application.domain.qlmservice.ZdyVipMatchWithBLOBs">
+        update zdy_vip_match
+        <set>
+            <if test="userid != null">
+                userId = #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="dwmc != null">
+                dwmc = #{dwmc,jdbcType=VARCHAR},
+            </if>
+            <if test="areas != null">
+                areas = #{areas,jdbcType=VARCHAR},
+            </if>
+            <if test="kfid != null">
+                kfId = #{kfid,jdbcType=INTEGER},
+            </if>
+            <if test="kfname != null">
+                kfName = #{kfname,jdbcType=VARCHAR},
+            </if>
+            <if test="kelevel != null">
+                keLevel = #{kelevel,jdbcType=INTEGER},
+            </if>
+            <if test="isornot != null">
+                isOrNot = #{isornot,jdbcType=INTEGER},
+            </if>
+            <if test="industrytype != null">
+                industryType = #{industrytype,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="notice != null">
+                notice = #{notice,jdbcType=VARCHAR},
+            </if>
+            <if test="intime != null">
+                intime = #{intime,jdbcType=INTEGER},
+            </if>
+            <if test="updatetime != null">
+                updatetime = #{updatetime,jdbcType=INTEGER},
+            </if>
+            <if test="starttime != null">
+                startTime = #{starttime,jdbcType=INTEGER},
+            </if>
+            <if test="endtime != null">
+                endTime = #{endtime,jdbcType=INTEGER},
+            </if>
+            <if test="ismatch != null">
+                isMatch = #{ismatch,jdbcType=INTEGER},
+            </if>
+            <if test="areanames != null">
+                areaNames = #{areanames,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="yewu != null">
+                yewu = #{yewu,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs"
+            parameterType="com.qianlima.application.domain.qlmservice.ZdyVipMatchWithBLOBs">
+    update zdy_vip_match
+    set userId = #{userid,jdbcType=INTEGER},
+      dwmc = #{dwmc,jdbcType=VARCHAR},
+      areas = #{areas,jdbcType=VARCHAR},
+      kfId = #{kfid,jdbcType=INTEGER},
+      kfName = #{kfname,jdbcType=VARCHAR},
+      keLevel = #{kelevel,jdbcType=INTEGER},
+      isOrNot = #{isornot,jdbcType=INTEGER},
+      industryType = #{industrytype,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      notice = #{notice,jdbcType=VARCHAR},
+      intime = #{intime,jdbcType=INTEGER},
+      updatetime = #{updatetime,jdbcType=INTEGER},
+      startTime = #{starttime,jdbcType=INTEGER},
+      endTime = #{endtime,jdbcType=INTEGER},
+      isMatch = #{ismatch,jdbcType=INTEGER},
+      areaNames = #{areanames,jdbcType=LONGVARCHAR},
+      yewu = #{yewu,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.qianlima.application.domain.qlmservice.ZdyVipMatch">
+    update zdy_vip_match
+    set userId = #{userid,jdbcType=INTEGER},
+      dwmc = #{dwmc,jdbcType=VARCHAR},
+      areas = #{areas,jdbcType=VARCHAR},
+      kfId = #{kfid,jdbcType=INTEGER},
+      kfName = #{kfname,jdbcType=VARCHAR},
+      keLevel = #{kelevel,jdbcType=INTEGER},
+      isOrNot = #{isornot,jdbcType=INTEGER},
+      industryType = #{industrytype,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      notice = #{notice,jdbcType=VARCHAR},
+      intime = #{intime,jdbcType=INTEGER},
+      updatetime = #{updatetime,jdbcType=INTEGER},
+      startTime = #{starttime,jdbcType=INTEGER},
+      endTime = #{endtime,jdbcType=INTEGER},
+      isMatch = #{ismatch,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <update id="updateByUserIdSelective"
+            parameterType="com.qianlima.application.domain.qlmservice.ZdyVipMatchWithBLOBs">
+        update zdy_vip_match
+        <set>
+            <if test="dwmc != null">
+                dwmc = #{dwmc,jdbcType=VARCHAR},
+            </if>
+            <if test="areas != null">
+                areas = #{areas,jdbcType=VARCHAR},
+            </if>
+            <if test="kfid != null">
+                kfId = #{kfid,jdbcType=INTEGER},
+            </if>
+            <if test="kfname != null">
+                kfName = #{kfname,jdbcType=VARCHAR},
+            </if>
+            <if test="kelevel != null">
+                keLevel = #{kelevel,jdbcType=INTEGER},
+            </if>
+            <if test="isornot != null">
+                isOrNot = #{isornot,jdbcType=INTEGER},
+            </if>
+            <if test="industrytype != null">
+                industryType = #{industrytype,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="notice != null">
+                notice = #{notice,jdbcType=VARCHAR},
+            </if>
+            <if test="intime != null">
+                intime = #{intime,jdbcType=INTEGER},
+            </if>
+            <if test="updatetime != null">
+                updatetime = #{updatetime,jdbcType=INTEGER},
+            </if>
+            <if test="starttime != null">
+                startTime = #{starttime,jdbcType=INTEGER},
+            </if>
+            <if test="endtime != null">
+                endTime = #{endtime,jdbcType=INTEGER},
+            </if>
+            <if test="ismatch != null">
+                isMatch = #{ismatch,jdbcType=INTEGER},
+            </if>
+            <if test="areanames != null">
+                areaNames = #{areanames,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="yewu != null">
+                yewu = #{yewu,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where userId = #{userid,jdbcType=INTEGER}
+    </update>
+</mapper>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianlima.application.mapper.publish.AuditUserZbxxMapper">
+
+  <insert id="insertAuditUserZbxx">
+    insert into audit_user_zbxx(id,dwmc,uid,lxr,tle,email,title,zb_type,addtime,mianfei,dwmc_type,status)
+    value(#{id},#{company},#{userid},#{people},#{phone},#{email},#{title},#{xmtype},#{addtime},#{mianfei},#{dwtype},#{status})
+  </insert>
+
+  <insert id="insertAuditUserZbxxContent">
+    insert into audit_user_zbxx_content(id,content) value(#{id},#{content})
+  </insert>
+
+  <insert id="insertAuditUserZbxxLog">
+    insert into zdy_user_zbxx_log(intime,optType,source,auditId)
+    value(#{addtime},9,5,#{id})
+  </insert>
+
+  <update id="updateAuditUserZbxx">
+    update audit_user_zbxx
+    set dwmc=#{company},lxr=#{people},tle=#{phone},email=#{email},title=#{title},
+    zb_type=#{xmtype},addtime=#{addtime},mianfei=#{mianfei},dwmc_type=#{dwtype},status=0
+    where id=#{id}
+  </update>
+
+  <update id="updateAuditUserZbxxContent">
+    update audit_user_zbxx_content set content=#{content} where id=#{id}
+  </update>
+
+  <delete id="deleteAuditUserZbxx">
+    delete from audit_user_zbxx where id=#{id}
+  </delete>
+
+  <delete id="deleteAuditUserZbxxContent">
+    delete from audit_user_zbxx_content where id=#{id}
+  </delete>
+
+  <select id="selectCountByUserid" resultType="java.lang.Integer">
+    select count(*) from audit_user_zbxx where uid=#{userid}
+  </select>
+
+  <resultMap id="BaseResultMap" type="com.qianlima.application.domain.publish.AuditUserZbxx">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="zb_type" jdbcType="INTEGER" property="xmtype" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="addtime" jdbcType="VARCHAR" property="addtime" />
+    <result column="content_url" jdbcType="VARCHAR" property="contentUrl" />
+  </resultMap>
+
+  <select id="selectAllByUserid" resultMap="BaseResultMap">
+    select id,zb_type,title,status,addtime,content_url
+    from audit_user_zbxx where uid= #{userid}
+    order by id desc limit #{pageNo},#{pageSize}
+  </select>
+
+    <resultMap id="ResultMap" type="com.qianlima.application.domain.publish.AuditUserZbxx">
+        <result column="dwmc" jdbcType="VARCHAR" property="company" />
+        <result column="lxr" jdbcType="VARCHAR" property="people" />
+        <result column="tle" jdbcType="VARCHAR" property="phone" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="zb_type" jdbcType="INTEGER" property="xmtype" />
+        <result column="dwmc_type" jdbcType="INTEGER" property="dwtype" />
+    </resultMap>
+  <select id="selectOneById" resultMap="ResultMap">
+    select dwmc,lxr,tle,email,title,zb_type,dwmc_type
+    from audit_user_zbxx where id = #{id} limit 1
+  </select>
+
+  <select id="selectContentById" resultType="java.lang.String">
+    select content from audit_user_zbxx_content where id=#{id}
+  </select>
+
+</mapper>

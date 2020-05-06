@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos.zb.qianlima.com:8848
+        register-enabled: true
+
+  http:
+    encoding:
+      force: true
+  data:
+    mongodb:
+      uri: mongodb://userWriter:1JFwMnd3zoBN@10.30.177.226:27017,10.30.180.26:27017,10.66.182.162:27017/user?replicaSet=rs0
+
+dubbo:
+  application:
+    qos-enable: false
+  consumer:
+    check: false

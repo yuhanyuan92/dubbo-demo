@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianlima.application.mapper.qlmlog.SearchQyLogMapper">
+
+  <select id="selectCountByUsername" resultType="java.lang.Integer">
+    select count(1) from search_qy_log where username=#{username} and searchTime>#{time}
+  </select>
+
+  <select id="selectCountByUrl" resultType="java.lang.Integer">
+    select count(1) from search_qy_log
+    where username=#{username} AND url=#{url} AND searchTime>#{time}
+  </select>
+
+  <insert id="insertJL">
+    insert into `search_qy_log` (`username`, `url`, `ip`, `searchTime`)
+    values (#{username}, #{url}, #{ip}, #{time})
+  </insert>
+</mapper>

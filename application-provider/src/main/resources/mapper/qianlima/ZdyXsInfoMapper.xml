@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianlima.application.mapper.qianlima.ZdyXsInfoMapper">
+  <resultMap id="BaseResultMap" type="com.qianlima.application.domain.qianlima.ZdyXsInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="crmId" jdbcType="INTEGER" property="crmid" />
+    <result column="kfName" jdbcType="VARCHAR" property="kfname" />
+    <result column="kfPhone" jdbcType="VARCHAR" property="kfphone" />
+    <result column="kfFixPhone" jdbcType="VARCHAR" property="kffixphone" />
+    <result column="kfMail" jdbcType="VARCHAR" property="kfmail" />
+    <result column="kfQQ" jdbcType="VARCHAR" property="kfqq" />
+    <result column="wechatCode" jdbcType="VARCHAR" property="wechatcode" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, crmId, kfName, kfPhone, kfFixPhone, kfMail, kfQQ, wechatCode, gmt_create, gmt_update
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zdy_xs_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="getCustomerServiceInfo" resultMap="BaseResultMap">
+        SELECT zxi.* FROM zdy_xs_customer_relation zxcr
+        LEFT JOIN zdy_xs_info zxi ON zxi.crmId=zxcr.crmId
+        WHERE zxcr.orgId = #{userId}
+        LIMIT 1
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zdy_xs_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qianlima.application.domain.qianlima.ZdyXsInfo">
+    insert into zdy_xs_info (id, crmId, kfName, 
+      kfPhone, kfFixPhone, kfMail, 
+      kfQQ, wechatCode, gmt_create, 
+      gmt_update)
+    values (#{id,jdbcType=INTEGER}, #{crmid,jdbcType=INTEGER}, #{kfname,jdbcType=VARCHAR}, 
+      #{kfphone,jdbcType=VARCHAR}, #{kffixphone,jdbcType=VARCHAR}, #{kfmail,jdbcType=VARCHAR}, 
+      #{kfqq,jdbcType=VARCHAR}, #{wechatcode,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtUpdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qianlima.application.domain.qianlima.ZdyXsInfo">
+    insert into zdy_xs_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="crmid != null">
+        crmId,
+      </if>
+      <if test="kfname != null">
+        kfName,
+      </if>
+      <if test="kfphone != null">
+        kfPhone,
+      </if>
+      <if test="kffixphone != null">
+        kfFixPhone,
+      </if>
+      <if test="kfmail != null">
+        kfMail,
+      </if>
+      <if test="kfqq != null">
+        kfQQ,
+      </if>
+      <if test="wechatcode != null">
+        wechatCode,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="crmid != null">
+        #{crmid,jdbcType=INTEGER},
+      </if>
+      <if test="kfname != null">
+        #{kfname,jdbcType=VARCHAR},
+      </if>
+      <if test="kfphone != null">
+        #{kfphone,jdbcType=VARCHAR},
+      </if>
+      <if test="kffixphone != null">
+        #{kffixphone,jdbcType=VARCHAR},
+      </if>
+      <if test="kfmail != null">
+        #{kfmail,jdbcType=VARCHAR},
+      </if>
+      <if test="kfqq != null">
+        #{kfqq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatcode != null">
+        #{wechatcode,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianlima.application.domain.qianlima.ZdyXsInfo">
+    update zdy_xs_info
+    <set>
+      <if test="crmid != null">
+        crmId = #{crmid,jdbcType=INTEGER},
+      </if>
+      <if test="kfname != null">
+        kfName = #{kfname,jdbcType=VARCHAR},
+      </if>
+      <if test="kfphone != null">
+        kfPhone = #{kfphone,jdbcType=VARCHAR},
+      </if>
+      <if test="kffixphone != null">
+        kfFixPhone = #{kffixphone,jdbcType=VARCHAR},
+      </if>
+      <if test="kfmail != null">
+        kfMail = #{kfmail,jdbcType=VARCHAR},
+      </if>
+      <if test="kfqq != null">
+        kfQQ = #{kfqq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatcode != null">
+        wechatCode = #{wechatcode,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qianlima.application.domain.qianlima.ZdyXsInfo">
+    update zdy_xs_info
+    set crmId = #{crmid,jdbcType=INTEGER},
+      kfName = #{kfname,jdbcType=VARCHAR},
+      kfPhone = #{kfphone,jdbcType=VARCHAR},
+      kfFixPhone = #{kffixphone,jdbcType=VARCHAR},
+      kfMail = #{kfmail,jdbcType=VARCHAR},
+      kfQQ = #{kfqq,jdbcType=VARCHAR},
+      wechatCode = #{wechatcode,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

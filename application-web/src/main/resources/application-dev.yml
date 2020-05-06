@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.18.30.12:8848
+        namespace: yuhanyuan
+
+  devtools:
+    restart:
+      enabled: true
+  http:
+    encoding:
+      force: true
+  data:
+    mongodb:
+      uri: mongodb://172.18.30.12:27017/vip-user
+
+dubbo:
+  application:
+    qos-enable: false
+  consumer:
+    check: false

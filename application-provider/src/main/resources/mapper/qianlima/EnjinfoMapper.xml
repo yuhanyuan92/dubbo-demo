@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianlima.application.mapper.qianlima.EnjinfoMapper">
+
+
+  <resultMap id="EnjinfoDetailMap" type="com.qianlima.application.domain.qianlima.EnjinfoDetail">
+    <result column="gs_id" jdbcType="INTEGER" property="gsId" />
+    <result column="name" jdbcType="VARCHAR" property="lxr" />
+    <result column="fax" jdbcType="VARCHAR" property="fax" />
+    <result column="zhiwu" jdbcType="VARCHAR" property="zhiwu" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+  </resultMap>
+  <select id="selectEnjinfoDetailByIds" resultMap="EnjinfoDetailMap">
+    SELECT gs_id,`name`,fax,zhiwu,phone,tel from enjinfo_detail WHERE id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
+
+  <resultMap id="EnjinfoGsInfoMap" type="com.qianlima.application.domain.qianlima.EnjinfoGsInfo">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="areaid" jdbcType="INTEGER" property="areaid" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="gsmc" jdbcType="VARCHAR" property="gsmc" />
+  </resultMap>
+  <select id="selectEnjinfoGsInfoByIds" resultMap="EnjinfoGsInfoMap">
+    SELECT id,areaid,address,gsmc from enjinfo_gs_info where id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
+</mapper>

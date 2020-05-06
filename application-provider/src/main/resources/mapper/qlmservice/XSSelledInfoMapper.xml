@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianlima.application.mapper.qlmservice.XSSelledInfoMapper">
+  <resultMap id="BaseResultMap" type="com.qianlima.application.domain.qlmservice.XSSelledInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
+    <result column="xsid" jdbcType="INTEGER" property="xsid" />
+    <result column="sttime" jdbcType="INTEGER" property="sttime" />
+    <result column="totime" jdbcType="INTEGER" property="totime" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="beizhu" jdbcType="VARCHAR" property="beizhu" />
+    <result column="isxf" jdbcType="INTEGER" property="isxf" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, cid, xsid, sttime, totime, level, price, beizhu, isxf
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xs_selled_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xs_selled_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qianlima.application.domain.qlmservice.XSSelledInfo">
+    insert into xs_selled_info (id, cid, xsid, 
+      sttime, totime, level, 
+      price, beizhu, isxf
+      )
+    values (#{id,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{xsid,jdbcType=INTEGER}, 
+      #{sttime,jdbcType=INTEGER}, #{totime,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, 
+      #{price,jdbcType=INTEGER}, #{beizhu,jdbcType=VARCHAR}, #{isxf,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qianlima.application.domain.qlmservice.XSSelledInfo">
+    insert into xs_selled_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="xsid != null">
+        xsid,
+      </if>
+      <if test="sttime != null">
+        sttime,
+      </if>
+      <if test="totime != null">
+        totime,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="beizhu != null">
+        beizhu,
+      </if>
+      <if test="isxf != null">
+        isxf,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="xsid != null">
+        #{xsid,jdbcType=INTEGER},
+      </if>
+      <if test="sttime != null">
+        #{sttime,jdbcType=INTEGER},
+      </if>
+      <if test="totime != null">
+        #{totime,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="beizhu != null">
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="isxf != null">
+        #{isxf,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianlima.application.domain.qlmservice.XSSelledInfo">
+    update xs_selled_info
+    <set>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="xsid != null">
+        xsid = #{xsid,jdbcType=INTEGER},
+      </if>
+      <if test="sttime != null">
+        sttime = #{sttime,jdbcType=INTEGER},
+      </if>
+      <if test="totime != null">
+        totime = #{totime,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="beizhu != null">
+        beizhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="isxf != null">
+        isxf = #{isxf,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qianlima.application.domain.qlmservice.XSSelledInfo">
+    update xs_selled_info
+    set cid = #{cid,jdbcType=INTEGER},
+      xsid = #{xsid,jdbcType=INTEGER},
+      sttime = #{sttime,jdbcType=INTEGER},
+      totime = #{totime,jdbcType=INTEGER},
+      level = #{level,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
+      beizhu = #{beizhu,jdbcType=VARCHAR},
+      isxf = #{isxf,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByCid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xs_selled_info
+    where cid = #{userId,jdbcType=INTEGER}
+  </select>
+</mapper>

@@ -1,0 +1,62 @@
+spring:
+  datasource:
+    qianlima:
+      username: root
+      password: qianlima
+      jdbc-url: jdbc:mysql://172.18.30.20:3309/qianlima?useUnicode=true&characterEncoding=utf8
+    qlmservice:
+      username: root
+      password: qianlima
+      jdbc-url: jdbc:mysql://172.18.30.20:3309/qlmservice?useUnicode=true&characterEncoding=utf8
+    qlmlog:
+      username: root
+      password: qianlima
+      driverClassName: com.mysql.jdbc.Driver
+      jdbcUrl: jdbc:mysql://172.18.30.20:3309/qlmlog119?useUnicode=true&characterEncoding=GBK
+    institution:
+      username: root
+      password: qianlima
+      driverClassName: com.mysql.jdbc.Driver
+      jdbcUrl: jdbc:mysql://172.18.30.20:3309/institution?useUnicode=true&characterEncoding=GBK
+    publish:
+      username: root
+      password: qianlima
+      driverClassName: com.mysql.jdbc.Driver
+      jdbcUrl: jdbc:mysql://172.18.30.20:3309/publish?useUnicode=true&characterEncoding=GBK
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.18.30.12:8848
+        namespace: vip-dev
+        register-enabled: true
+
+  devtools:
+    restart:
+      enabled: true
+  http:
+    encoding:
+      force: true
+dubbo:
+  protocol:
+    threads: 50
+
+# 找人脉接口
+findConnections:
+  url: http://reward.qianlima.com/qianlima-reward/gwApi/getContractTicketInfo?orgId=%s
+# crm会员开通日期接口
+findCrmMemberInfo:
+  url: http://1.202.93.38:28080/crmService/www/queryOpenAndCloseTime.do?userid=%s
+
+data:
+  sjsolr:
+    host1: http://115.28.138.167/sjsolr/query
+    host2: http://115.29.32.36/sjsolr/query
+  qysolr:
+    host1: http://115.28.138.167/qysolr/query
+    host2: http://115.29.32.36/qysolr/query
+
+
+
+
+

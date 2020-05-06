@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianlima.application.mapper.qlmservice.ZdyCustomerToxmMapper">
+  <resultMap id="BaseResultMap" type="com.qianlima.application.domain.qlmservice.ZdyCustomerToxm">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="validatetime" jdbcType="INTEGER" property="validatetime" />
+    <result column="totalcount" jdbcType="INTEGER" property="totalcount" />
+    <result column="inttime" jdbcType="INTEGER" property="inttime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userid, username, validatetime, totalcount, inttime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zdy_customer_toxm
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zdy_customer_toxm
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qianlima.application.domain.qlmservice.ZdyCustomerToxm">
+    insert into zdy_customer_toxm (id, userid, username, 
+      validatetime, totalcount, inttime
+      )
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{validatetime,jdbcType=INTEGER}, #{totalcount,jdbcType=INTEGER}, #{inttime,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qianlima.application.domain.qlmservice.ZdyCustomerToxm">
+    insert into zdy_customer_toxm
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="validatetime != null">
+        validatetime,
+      </if>
+      <if test="totalcount != null">
+        totalcount,
+      </if>
+      <if test="inttime != null">
+        inttime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="validatetime != null">
+        #{validatetime,jdbcType=INTEGER},
+      </if>
+      <if test="totalcount != null">
+        #{totalcount,jdbcType=INTEGER},
+      </if>
+      <if test="inttime != null">
+        #{inttime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianlima.application.domain.qlmservice.ZdyCustomerToxm">
+    update zdy_customer_toxm
+    <set>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="validatetime != null">
+        validatetime = #{validatetime,jdbcType=INTEGER},
+      </if>
+      <if test="totalcount != null">
+        totalcount = #{totalcount,jdbcType=INTEGER},
+      </if>
+      <if test="inttime != null">
+        inttime = #{inttime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qianlima.application.domain.qlmservice.ZdyCustomerToxm">
+    update zdy_customer_toxm
+    set userid = #{userid,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      validatetime = #{validatetime,jdbcType=INTEGER},
+      totalcount = #{totalcount,jdbcType=INTEGER},
+      inttime = #{inttime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zdy_customer_toxm
+    where userid = #{userId,jdbcType=INTEGER}
+  </select>
+</mapper>
